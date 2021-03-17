@@ -1,3 +1,9 @@
+/*
+ * Created by taehee28 on 2021. 3. 17
+ * Last modified 21. 3. 17 오후 5:49
+ * https://github.com/taehee28
+ */
+
 plugins {
     id 'com.android.application'
 }
@@ -26,6 +32,10 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+
+    viewBinding {
+        enabled = true
+    }
 }
 
 dependencies {
@@ -36,4 +46,7 @@ dependencies {
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+
+    implementation "androidx.lifecycle:lifecycle-viewmodel:2.3.0"
+    implementation "androidx.lifecycle:lifecycle-livedata:2.3.0"
 }

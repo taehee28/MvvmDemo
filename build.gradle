@@ -1,3 +1,9 @@
+/*
+ * Created by taehee28 on 2021. 3. 17
+ * Last modified 21. 3. 17 오후 5:18
+ * https://github.com/taehee28
+ */
+
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 buildscript {
     repositories {

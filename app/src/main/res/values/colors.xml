@@ -1,4 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Created by taehee28 on 2021. 3. 17
+  ~ Last modified 21. 3. 17 오후 5:18
+  ~ https://github.com/taehee28
+  -->
+
 <resources>
     <color name="purple_200">#FFBB86FC</color>
     <color name="purple_500">#FF6200EE</color>
