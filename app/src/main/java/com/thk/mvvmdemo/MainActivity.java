@@ -12,6 +12,7 @@ import androidx.lifecycle.Lifecycle;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModel;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -33,11 +34,12 @@ public class MainActivity extends AppCompatActivity implements LifecycleOwner {
         binder = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binder.getRoot());
 
-        viewModel = new MyViewModel();
-        viewModel.getLiveData().observe(this, s -> binder.textView.setText(s));
+//        viewModel = new MyViewModel();
+        // 단순히 new 키워드로 생성하는 것은 의미가 없고, HolderFragment에 의해 관리되게끔 하려면 ViewModelProvider를 통해서 생성해야 함
+        viewModel = new ViewModelProvider(this).get(MyViewModel.class);
+        viewModel.getLiveItemList().observe(this, strings -> Log.d(TAG, "Observe: liveItemList changed " + strings.toString()));
 
-
-        binder.btnDo.setOnClickListener(v -> viewModel.resetData());
+        binder.btnDo.setOnClickListener(view -> viewModel.changeItemList());
     }
 
     @NonNull
