@@ -6,6 +6,7 @@
 
 package com.thk.mvvmdemo;
 
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -14,31 +15,42 @@ import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.thk.mvvmdemo.databinding.ItemListCellBinding;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class ListViewAdapter extends ListAdapter<List<String>, ListViewAdapter.CardViewHolder> {
+public class ListViewAdapter extends ListAdapter<User, ListViewAdapter.CardViewHolder> {
 
-    // TODO: 2021-03-18 List<String>으로 써주는게 맞나 아니면 String으로만 적어줘야하는지 까먹음 ㅎ
-
-    protected ListViewAdapter(@NonNull DiffUtil.ItemCallback<List<String>> diffCallback) {
+    protected ListViewAdapter(@NonNull DiffUtil.ItemCallback<User> diffCallback) {
         super(diffCallback);
     }
 
     static class CardViewHolder extends RecyclerView.ViewHolder {
-        public CardViewHolder(@NonNull View itemView) {
-            super(itemView);
+        private ItemListCellBinding binder;
+
+        public CardViewHolder(@NonNull ItemListCellBinding binder) {
+            super(binder.getRoot());
+            this.binder = binder;
+
+        }
+
+        public void bind(User user) {
+            binder.tvText.setText(user.getUserName());
+            binder.tvUserNum.setText(user.getUserNum());
         }
     }
 
     @NonNull
     @Override
     public CardViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return null;
+        ItemListCellBinding binder = ItemListCellBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false);
+
+        return new CardViewHolder(binder);
     }
 
     @Override
     public void onBindViewHolder(@NonNull CardViewHolder holder, int position) {
-
+        holder.bind(getItem(position));
     }
 }
